@@ -24,6 +24,7 @@ def alternate(data, bit_no):
 if __name__ == '__main__':
     """
     Arguments:
+    bit to be inverted
     (m+k) 0s and 1s representing the message
     the generator polynomial
 
@@ -33,3 +34,4 @@ if __name__ == '__main__':
     """
 
     pass
+
