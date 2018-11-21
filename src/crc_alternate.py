@@ -9,29 +9,32 @@ from __crc_helpers import string_to_bool, print_bool_list
 
 
 def alternate(data, bit_no):
-    """
-    Arguments:
-    data -- input data (a list of bool values that represent the data) also known as D
-    bit_no -- bit to be inverted (a bit number thats < len(data) to be inverted in the data)
+	"""
+	Arguments:
+	data -- input data (a list of bool values that represent the data) also known as D
+	bit_no -- bit to be inverted (a bit number thats < len(data) to be inverted in the data)
+	
+	Returns:
+	data_inverted -- output data (a list of bool values that represent the data with the required bit inverted)
+	"""
 
-    Returns:
-    data_inverted -- output data (a list of bool values that represent the data with the required bit inverted)
-    """
-
-    pass
+	data[bit_no] = not data[bit_no]
+	return data
 
 
 if __name__ == '__main__':
-    """
-    Arguments:
-    bit to be inverted
-    (m+k) 0s and 1s representing the message
-    the generator polynomial
-
-    Prints:
-    (m+k) 0s and 1s representing the message to be transmitted with the required bit inverted
-    the generator polynomial just as recieved
-    """
-
-    pass
+	"""
+	Arguments:
+	bit to be inverted
+	(m+k) 0s and 1s representing the message
+	the generator polynomial
+	
+	Prints:
+	(m+k) 0s and 1s representing the message to be transmitted with the required bit inverted
+	the generator polynomial just as recieved
+	"""
+	data_test = [0,1,1,0,1,0]
+	data_inverted = alternate(data_test,4)
+	print_bool_list(data_test)
+	print_bool_list(data_inverted)
 

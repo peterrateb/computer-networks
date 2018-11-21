@@ -12,30 +12,35 @@ from __crc_helpers import string_to_bool, divide, print_bool_list
 
 
 def generator(data, polynomial):
-    """
-    Arguments:
-    data -- input data (a list of bool values that represent the data) also known as D
-    polynomial -- generator polynomial (a list of bool values that represent the values of different coefficients of the polynomial) also known as G
-
-    Returns:
-    message -- the message to be transmitted (a list of bool values that represent the D+R bits in the output message)
-
-    Hints:
-    polynomial_order = len(polynomial) - 1
-    """
-
-    pass
+	"""
+	Arguments:
+	data -- input data (a list of bool values that represent the data) also known as D
+	polynomial -- generator polynomial (a list of bool values that represent the values of different coefficients of the polynomial) also known as G
+	
+	Returns:
+	message -- the message to be transmitted (a list of bool values that represent the D+R bits in the output message)
+	
+	Hints:
+	polynomial_order = len(polynomial) - 1
+	"""
+	remainder = divide(data, polynomial)
+	remainder_list = string_to_bool(remainder)
+	message = data + remainder_list 
+	return message
 
 
 if __name__ == '__main__':
-    """
-    Arguments:
-    (m) 0s and 1s representing the message
-    the generator polynomial
-
-    Prints:
-    (m+k) 0s and 1s representing the message to be transmitted
-    the generator polynomial just as recieved
-    """
-
-    pass
+	"""
+	Arguments:
+	(m) 0s and 1s representing the message
+	the generator polynomial
+	
+	Prints:
+	(m+k) 0s and 1s representing the message to be transmitted
+	the generator polynomial just as recieved
+	"""
+	data_test = [1,0,0,1,1,1,0,1]
+	genrator_test = [1,0,0,1]
+	message = generator(data_test,genrator_test)
+	print_bool_list(message)
+	
