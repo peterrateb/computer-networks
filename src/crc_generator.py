@@ -23,6 +23,9 @@ def generator(data, polynomial):
 	Hints:
 	polynomial_order = len(polynomial) - 1
 	"""
+	polynomial_order = len(polynomial) - 1
+	for i in range(polynomial_order):
+		data.append(0)
 	remainder = divide(data, polynomial)
 	remainder_list = string_to_bool(remainder)
 	message = data + remainder_list 
