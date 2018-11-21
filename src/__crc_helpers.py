@@ -52,8 +52,6 @@ def divide(data, polynomial):
     """
     polynomial_length = len(polynomial)
     polynomial_order = polynomial_length - 1
-    for i in range(polynomial_order):
-        data.append(0)
     index = 0
     pick = ""
     while index < len(data):
@@ -91,5 +89,5 @@ def print_bool_list(bool_list):
 
 if __name__ == '__main__':
 
-    print(divide([1, 0, 1, 1, 1, 0], [1, 0, 0, 1]))
+    print(divide([1, 0, 1, 1, 1, 0, 0, 0, 0], [1, 0, 0, 1]))
     # raise Exception('YOU CANT CALL THIS CODE')
