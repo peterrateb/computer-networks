@@ -46,5 +46,8 @@ if __name__ == '__main__':
         arg.append(line)
     data, polynomial = string_to_bool_list(arg[0]), string_to_bool_list(arg[1])
     
-    message = generator(data, polynomial)
-    print(bool_list_to_string(message), arg[1], sep='\n')
+    message = bool_list_to_string(generator(data, polynomial))
+    out = open('transmitted_message.txt', 'w')
+    out.write(message)
+    out.close()
+    print(message, arg[1], sep='\n')
