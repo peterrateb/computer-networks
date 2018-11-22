@@ -3,7 +3,7 @@ Helper functions to be used in other files
 """
 
 
-def string_to_bool(string):
+def string_to_bool_list(string):
     """
     Arguments:
     string -- input data as a string of zeros and ones, ex: 0110101001
@@ -11,30 +11,29 @@ def string_to_bool(string):
     Returns:
     bool_list -- a list of bool values that is equivalent to the input string, ex: [0, 1, 1, 0, 1, 0, 1, 0, 0, 1]
     """
+    
     bool_list = []
     for char in string:
-        if char == '1':
-            bool_list.append(1)
-        else:
+        if char == '0':
             bool_list.append(0)
+        elif char == '1':
+            bool_list.append(1)
 
     return bool_list
 
 
-def xor(A, B):
+def xor(a, b):
     """
-        Arguments:
-        A,B two strings of zeros and ones with same length
+    Arguments:
+    a, b -- Two bool lists with the same length
 
-        Returns:
-        result -- a string of zeros and ones contains the xor result of A and B
+    Returns:
+    result -- A bool list containing the result of the xor
     """
-    result = ""
-    for i in range(len(A)):
-        if A[i] != B[i]:
-            result += "1"
-        else:
-            result += "0"
+    
+    result = []
+    for i in range(len(a)):
+        result.append(int(a[i] != b[i]))
     return result
 
 
@@ -50,44 +49,32 @@ def divide(data, polynomial):
     Hints:
     polynomial_order = len(polynomial) - 1
     """
+    
+    data_copy = data.copy()
+    data_length = len(data_copy)
     polynomial_length = len(polynomial)
     polynomial_order = polynomial_length - 1
-    index = 0
-    pick = ""
-    while index < len(data):
-        if len(pick) != polynomial_length:
-            pick += str(data[index])
-            index += 1
-        else:
-            if pick[0] == '0':
-                pick = pick[1:]
-                pick += str(data[index])
-                index += 1
-                continue
-            pick = xor(string_to_bool(pick), polynomial)
-    if len(pick) == polynomial_length:
-        pick = xor(string_to_bool(pick), polynomial)
-    return pick[len(pick)-polynomial_order:]
+    for div_no in range(data_length - polynomial_length + 1):
+        div_data = data_copy[div_no : div_no + polynomial_length]
+        if div_data[0] == 0:
+            continue
+        data_copy[div_no : div_no+polynomial_length] = xor(div_data, polynomial)
+    return data_copy[data_length - polynomial_length + 1:]
 
 
-def print_bool_list(bool_list):
+def bool_list_to_string(bool_list):
     """
     bool_list -- a list of bool values, ex: [0, 1, 1, 0, 1, 0, 1, 0, 0, 1]
 
     Prints:
     a string of the bool_list values concatinated, ex: 0110101001
     """
-    str = ""
+    
+    string = ""
     for boolean in bool_list:
-        if boolean:
-            str += "1"
-        else:
-            str += "0"
-
-    print(str)
+        string += str(boolean)
+    return(string)
 
 
 if __name__ == '__main__':
-
-    print(divide([1, 0, 1, 1, 1, 0, 0, 0, 0], [1, 0, 0, 1]))
-    # raise Exception('YOU CANT CALL THIS CODE')
+    raise Exception('YOU CANT CALL THIS CODE')
